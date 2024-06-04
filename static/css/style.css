@@ -1,0 +1,9 @@
+@media (min-width: 992px) {
+    .custom-align {
+        align-self: end;
+    }
+}
+
+body {
+    padding-bottom: 70px;
+}

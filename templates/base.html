@@ -1,0 +1,104 @@
+<!doctype html>
+{% load static %}
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Daily Woof</title>
+
+    <!-- bootstrap css -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- fontawesome css -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="{% url 'home' %}">Daily Woof</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == home_url %}active{% endif %}"
+                        href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == breeds_url %}active{% endif %}"
+                        href="#">Breeds</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == petcare_url %}active{% endif %}"
+                        href="#">Pet-care</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == events_url %}active{% endif %}"
+                        href="#">Events</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item custom-align">
+                    <a class="nav-link {% if request.path == profile_url %}active{% endif %}" href="#">Profile</a>
+                </li>
+                <li class="nav-item custom-align">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item custom-align">
+                    <a class="nav-link {% if request.path == login_url %}active{% endif %}"
+                        href="#">Login</a>
+                </li>
+                <li class="nav-item custom-align">
+                    <a class="nav-link {% if request.path == register_url %}active{% endif %}"
+                        href="#">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        {% if user.is_authenticated %}
+        <p class="text-center">Woofcome {{ user }}</p>
+        {% else %}
+        <p class="text-center">You're not logged in!</p>
+        {% endif %}
+
+        {% block content %}
+        <!-- Content from other pages will be here -->
+        {% endblock content %}
+    </main>
+
+
+
+    <!-- footer section with social media links -->
+    <footer class="bg-light text-center text-lg-start mt-4 fixed-bottom">
+        <div class="container p-4">
+            <p class="text-center mb-0">Thank you for stopping bau</p>
+            <small class="text-center d-block mb-3">Made by Massimo</small>
+            <div class="text-center">
+                <a href="#" class="text-dark mr-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-dark mr-3"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-dark"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
