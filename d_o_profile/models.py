@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.templatetags.static import static
 
 # Create your models here.
 
@@ -21,7 +22,7 @@ class Breed(models.Model):
 
 #model for the db for the dog's profiles
 class Dog(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="dogs")
     name = models.CharField(max_length=200)
     breed = models.ForeignKey(Breed, on_delete=models.CASCADE, related_name="dogs")
     age = models.IntegerField(choices=AGE_CHOICES)
@@ -36,6 +37,29 @@ class Dog(models.Model):
     #shows the dog's name and breed in the admin page
     def __str__(self):
         return f"{self.name} ({self.breed})"
+
+
+#model for the db for the human profile
+class Owner(models.Model):
+    name = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    displayname = models.CharField(max_length=20, null=True, blank=True)
+    info = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        if self.displayname:
+            name = self.displayname
+        else:
+            name = self.name.username
+        return name
+
+    @property
+    def avatar(self):
+        try:
+            avatar = self.image.url
+        except:
+            avatar = static('images/avatar.png')
+        return avatar
 
 
 

@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="{% url 'home' %}">BarkingWay</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link {% if request.path == home_url %}active{% endif %}"
+                    href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if request.path == breeds_url %}active{% endif %}"
+                    href="#">Breeds</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if request.path == petcare_url %}active{% endif %}"
+                    href="#">Pet-care</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if request.path == events_url %}active{% endif %}"
+                    href="#">Events</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item custom-align">
+                <a class="nav-link {% if request.path == profile_url %}active{% endif %}" href="#">Profile</a>
+            </li>
+            <li class="nav-item custom-align">
+                <a class="nav-link" href="#">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item custom-align">
+                <a class="nav-link {% if request.path == login_url %}active{% endif %}"
+                    href="#">Login</a>
+            </li>
+            <li class="nav-item custom-align">
+                <a class="nav-link {% if request.path == register_url %}active{% endif %}"
+                    href="#">Register</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
