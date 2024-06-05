@@ -13,9 +13,14 @@
         {% for dog in owned_dogs %}
         <li>
             <a href="{% url 'dog_profile' dog.id %}">{{ dog.name }} ({{ dog.breed }})</a>
+            <p>Modify profile</p>
         </li>
         {% endfor %}
     </ul>
+    <h4>Manage dog profile:</h4>
+    <button class="btn btn-primary">New Profile</button>
+    <button class="btn btn-danger">Delete Profile</button>
+    
 </div>
 
 

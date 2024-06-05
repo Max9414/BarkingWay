@@ -26,7 +26,7 @@
     {% else %}
         <p>No</p>
     {% endif %}
-    <button onclick="location.href='{% url 'human_profile' %}'">Back to {{ dog.owner }}</button>
+    <button class="btn btn-outline-primary" onclick="location.href='{% url 'human_profile' %}'">Back to {{ dog.owner }}</button>
     
 </div>
 
