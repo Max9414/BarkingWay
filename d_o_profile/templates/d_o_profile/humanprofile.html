@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 
 <div class="container">
     <h1>Profile page</h1>
+    <img src="{{ owner.image }}" alt="">
     <h3>{{ owner.name }}</h3>
+    <p>{{ owner.info }}</p>
+    <h4>Owned dogs:</h4>
+    <ul>
+        {% for dog in owned_dogs %}
+        <li>
+            <a href="{% url 'dog_profile' dog.id %}">{{ dog.name }} ({{ dog.breed }})</a>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
 

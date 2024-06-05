@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <h1>Doggo page</h1>
+    <img src="{{ owner.image }}" alt="">
+    <h3>{{ dog.name }}</h3>
+    <p>{{ dog.age }}, {{ dog.breed }}</p>
+    <h4>Has {{ dog.name }} been bitten?</h4>
+    {% if dog.bitten %}
+        <p>Yes</p>
+    {% else %}
+        <p>No</p>
+    {% endif %}
+    <h4>Has {{ dog.name }} been vaccinated?</h4>
+    {% if dog.vaccinated %}
+        <p>Yes</p>
+    {% else %}
+        <p>No</p>
+    {% endif %}
+    <h4>Is {{ dog.name }} a rough player?</h4>
+    {% if dog.rough %}
+        <p>Yes</p>
+    {% else %}
+        <p>No</p>
+    {% endif %}
+    <button onclick="location.href='{% url 'human_profile' %}'">Back to {{ dog.owner }}</button>
+    
+</div>
+
+
+{% endblock %}

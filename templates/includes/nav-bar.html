@@ -26,7 +26,7 @@
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
             <li class="nav-item custom-align">
-                <a class="nav-link {% if request.path == profile_url %}active{% endif %}" href="#">Profile</a>
+                <a class="nav-link {% if request.path == profile_url %}active{% endif %}" href="{% url 'human_profile' %}">Profile</a>
             </li>
             <li class="nav-item custom-align">
                 <a class="nav-link" href="#">Logout</a>
