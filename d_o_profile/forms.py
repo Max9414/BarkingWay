@@ -1,5 +1,7 @@
 from django import forms
-from .models import Owner, Dog
+from .models import Owner, Dog, Breed
+
+AGE_CHOICES = [(i, str(i)) for i in range(1, 21)]
 
 class DogForm(forms.ModelForm):
     class Meta:
@@ -11,8 +13,8 @@ class DogForm(forms.ModelForm):
         #widgets to create a new dog data in th db
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'breed': forms.TextInput(attrs={'class': 'form-control'}),
-            'age': forms.NumberInput(attrs={'class': 'form-control'}),
+            'breed': forms.Select(attrs={'class': 'form-control'}),
+            'age': forms.Select(choices=AGE_CHOICES, attrs={'class': 'form-control'}),
             'bitten': forms.CheckboxInput(attrs={'class': 'form-control'}),
             'vaccinated': forms.CheckboxInput(attrs={'class': 'form-control'}),
             'rough': forms.CheckboxInput(attrs={'class': 'form-control'}),
@@ -25,3 +27,4 @@ class DogForm(forms.ModelForm):
             'vaccinated': "Vaccinated Dog",
             'rough': "Rough player",
         }
+    breed = forms.ModelChoiceField(queryset=Breed.objects.all())
