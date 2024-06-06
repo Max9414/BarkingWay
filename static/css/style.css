@@ -16,12 +16,12 @@ footer {
     height: 8rem;
 }
 
-.breed-link {
+.all-link {
     text-decoration: none;
     color: #445261;
 }
 
-.breed-link:hover {
+.all-link:hover {
     text-decoration: none;
     color: burlywood;
 }
