@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.summernote',
     'django.contrib.sites',
     'crispy_forms',
     'allauth',
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'd_o_profile',
     'homepage',
+    'breeds',
 ]
 
 SITE_ID = 1

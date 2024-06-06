@@ -5,6 +5,7 @@ django-allauth==0.63.3
 django-cleanup==8.1.0
 django-crispy-forms==2.1
 django-htmx==1.17.3
+django-summernote==0.8.20.0
 gunicorn==22.0.0
 pillow==10.3.0
 psycopg2==2.9.9
