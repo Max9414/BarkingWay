@@ -5,25 +5,7 @@
 }
 
 body {
-    padding-bottom: 5rem; /* Default padding for small screens */
-}
-
-@media (min-width: 768px) {
-    body {
-        padding-bottom: 6rem; /* Padding for medium screens and up */
-    }
-}
-
-@media (min-width: 992px) {
-    body {
-        padding-bottom: 7rem; /* Padding for large screens and up */
-    }
-}
-
-@media (min-width: 1200px) {
-    body {
-        padding-bottom: 8rem; /* Padding for extra large screens and up */
-    }
+    padding-bottom: 10rem
 }
 
 .breed-link {
