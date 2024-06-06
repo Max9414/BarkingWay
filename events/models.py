@@ -12,4 +12,4 @@ class Event(models.Model):
     updated_on = models.DateTimeField(auto_now_add=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, name="location")
     description = models.TextField()
-    participants = models.IntegerField(blank=True)
+    participants = models.IntegerField(default=0)
