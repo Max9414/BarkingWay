@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
 <div class="container">
@@ -7,15 +6,9 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="button" id="createLocationButton" class="btn btn-secondary">Add City</button>
+        <a href="{% url 'create_location' %}" class="btn btn-warning">Add City</a>
         <button type="submit" class="btn btn-primary">Create Event</button>
     </form>
 </div>
-
-{% endblock %}
-
-{% block extra %}
-
-    <script src="{% static 'js/create_location.js' %}"></script>
 
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from .models import Event
 from .forms import EventForm, LocationForm
 
@@ -34,11 +35,12 @@ def create_event(request):
 
 
 def create_location(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = LocationForm(request.POST)
         if form.is_valid():
-            location_name = form.cleaned_data['location_name']
-            # Create a new Location object with the provided name
-            new_location = form.save()
-            return JsonResponse({'success': True})
-    return JsonResponse({'success': False})
+            form.save()
+            return redirect('create_event')
+    else:
+        form = LocationForm()
+    
+    return render(request, 'events/create_location.html', {'form': form})
