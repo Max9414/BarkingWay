@@ -14,5 +14,6 @@ Welcome to this amazing website dedicated to walks and events for dogs, which ai
 
 bugs/problems
 if statements
+can't manage to redirect after registration
 
 FOR LOGIN-LOGOUT-REGISTER I followed the course pages and used the same templates.

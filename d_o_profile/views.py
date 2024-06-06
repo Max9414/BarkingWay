@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import HttpResponse
+from allauth.account.views import SignupView
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from .models import Dog, Owner
@@ -7,6 +8,7 @@ from django.contrib.auth.models import User
 from .forms import *
 
 # Create your views here.
+
 
 #creates the view for the human profile with all the owned dogs listed and their linked profiles
 def human_profile_view(request):
@@ -66,8 +68,8 @@ def delete_dog(request, dog_id):
 
 
 @login_required
-def modify_owner(request, owner_id):
-    owner_instance = get_object_or_404(Owner, id=owner_id)
+def modify_owner(request):
+    owner_instance = get_object_or_404(Owner, name=request.user)
     if request.method == "POST":
         form = OwnerForm(request.POST, instance=owner_instance)
         if form.is_valid():
