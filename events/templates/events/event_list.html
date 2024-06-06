@@ -2,7 +2,16 @@
 
 {% block content %}
 <div class="container-fluid">
-    <h1>Breeds</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Events</h1>
+            </div>
+            <div class="col text-right">
+                <button class="btn btn-primary" onclick="location.href='{% url 'create_event' %}'">Create Your Event</button>
+            </div>
+        </div>
+    </div>
     <div class="row">
         {% for event in events %}
         <div class="col-12 mb-4">
@@ -10,7 +19,7 @@
                 <a href="#" class="all-link">
                     <div class="card-body">
                         <h5 class="card-header">{{ event.event }}</h5>
-                        <p class="card-text">{{ event.event_date }}</p>
+                        <p class="card-text">Event date: {{ event.event_date }}</p>
                         <p class="card-text">{{ event.description }}</p>
                     </div>
                 </a>

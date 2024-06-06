@@ -20,7 +20,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if request.path == events_url %}active{% endif %}"
-                    href="#">Events</a>
+                    href="{% url 'event_list' %}">Events</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

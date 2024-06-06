@@ -16,4 +16,6 @@ bugs/problems
 if statements
 can't manage to redirect after registration
 
+main researches for features have been: signals, ajax(js), forms mostly from documentations and google researches
+
 FOR LOGIN-LOGOUT-REGISTER I followed the course pages and used the same templates.

@@ -4,7 +4,10 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Location(models.Model):
-    location = models.CharField(max_length=200)
+    location = models.CharField(max_length=200, unique=True)
+
+    class Meta:
+        ordering = ["location"]
 
     def __str__(self):
         return self.location

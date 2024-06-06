@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'd_o_profile',
     'homepage',
     'breeds',
+    'events',
 ]
 
 SITE_ID = 1

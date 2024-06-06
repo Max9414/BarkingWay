@@ -24,4 +24,5 @@ urlpatterns = [
     path('', home_view, name="home"),
     path('d_o_profile/', include('d_o_profile.urls')),
     path('breeds/', include('breeds.urls'), name='breeds'),
+    path('events/', include('events.urls'), name='events'),
 ]
