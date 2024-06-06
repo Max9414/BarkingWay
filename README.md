@@ -14,3 +14,5 @@ Welcome to this amazing website dedicated to walks and events for dogs, which ai
 
 bugs/problems
 if statements
+
+FOR LOGIN-LOGOUT-REGISTER I followed the course pages and used the same templates.
