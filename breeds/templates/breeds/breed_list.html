@@ -7,7 +7,7 @@
         {% for breed in breeds %}
         <div class="col-12 mb-4">
             <div class="card card-body">
-                <a href="{% url 'breed_detail'%}" class="breed-link">
+                <a href="{% url 'breed_detail' breed.slug %}" class="breed-link">
                     <div class="card-body">
                         <h5 class="card-header">{{ breed.breed }}</h5>
                         <p class="card-text">{{ breed.excerpt }}</p>
@@ -15,7 +15,7 @@
                 </a>
             </div>
         </div>
-        {% if forloop.counter|divisibleby:4 and not forloop.last %}
+        {% if forloop.counter|divisibleby:6 and not forloop.last %}
     </div>
     <div class="row">
         {% endif %}
@@ -26,7 +26,7 @@
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
             <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a></li>
-            <li><a href="{% url 'breeds' %}" class="page-link">&#x1F3E0; First</a></li>
+            <li><a href="{% url 'breed_list' %}" class="page-link">&#x1F3E0; First</a></li>
             {% endif %}
             {% if page_obj.has_next %}
             <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
