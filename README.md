@@ -11,3 +11,6 @@ Welcome to this amazing website dedicated to walks and events for dogs, which ai
 ![Responsive Image]()
 
 ![Website Highlights]()
+
+bugs/problems
+if statements

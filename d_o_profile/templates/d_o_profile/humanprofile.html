@@ -6,7 +6,16 @@
 <div class="container">
     <h1>Profile page</h1>
     <img src="{{ owner.image }}" alt="">
-    <h3>{{ owner.name }}</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>{{ owner.displayname }}</h3>
+            </div>
+            <div class="col align-items-center">
+                <a href="{% url 'human_update' owner.id %}">Modify profile</a>
+            </div>
+        </div>
+    </div>
     <p>{{ owner.info }}</p>
     <h4>Owned dogs:</h4>
     <ul>

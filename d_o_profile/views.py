@@ -4,7 +4,7 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from .models import Dog, Owner
 from django.contrib.auth.models import User
-from .forms import DogForm
+from .forms import *
 
 # Create your views here.
 
@@ -38,6 +38,18 @@ def create_dog(request):
             dog.owner = request.user
             dog.save()
             return redirect('human_profile') #redirects to the human profile page
-        else:
-            form = DogForm()
+    else:
+        form = DogForm()
     return render(request, 'd_o_profile/dog_profile_creation.html', {'form': form})
+
+@login_required
+def modify_owner(request, owner_id):
+    owner_instance = get_object_or_404(Owner, id=owner_id)
+    if request.method == "POST":
+        form = OwnerForm(request.POST, instance=owner_instance)
+        if form.is_valid():
+            owner = form.save()
+            return redirect('human_profile')
+    else:
+        form = OwnerForm(instance=owner_instance)
+    return render(request, 'd_o_profile/modify_human.html', {'form': form})
