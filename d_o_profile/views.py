@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import HttpResponse
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -41,6 +41,29 @@ def create_dog(request):
     else:
         form = DogForm()
     return render(request, 'd_o_profile/dog_profile_creation.html', {'form': form})
+
+
+@login_required
+def modify_dog(request, dog_id):
+    dog_instance = get_object_or_404(Dog, id=dog_id)
+    if request.method == "POST":
+        form = DogForm(request.POST, instance=dog_instance)
+        if form.is_valid():
+            dog = form.save()
+            return redirect(reverse('dog_profile', kwargs={'dog_id': dog_instance.id}))
+    else:
+        form = DogForm(instance=dog_instance)
+    return render(request, 'd_o_profile/dog_profile_creation.html', {'form': form})
+
+
+@login_required
+def delete_dog(request, dog_id):
+    dog_instance = get_object_or_404(Dog, id=dog_id)
+    if request.method == "POST":
+        dog_instance.delete()
+        return redirect('human_profile')
+    return render(request, 'd_o_profile/confirm_delete.html', {'dog': dog_instance})
+
 
 @login_required
 def modify_owner(request, owner_id):
