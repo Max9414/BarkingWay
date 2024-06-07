@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ event.event }}</h2>
+    <h3>Created by: {{ event.user }}</h3>
+    <p>The event will happen {{ event.event_date }}, in {{ event.location }}</p>
+    <p>{{ event.description }}</p>
+    <p>The event will start at {{ event.start_time }}, and it is scheduled to finish (if your doggos are ok with it) at: {{ event.end_time }}</p>
+    <p>Number of participants: {{ event.participants }}</p>
+    <div class="row">
+        <div class="col">
+            <h4>Wanna join the event?</h4>
+        </div>
+        <div class="col">
+            <a href="#" id="join_event" class="btn btn-primary">Join Event</a>
+        </div>
+    </div>
+    {% if user.is_authenticated and event.user == user %}
+    <a href="{% url 'modify_event' event.id %}">Edit Event</a>
+    {% endif %}
+</div>
+
+{% endblock %}
+    
+{% block scripts %}
+<script src="{% static 'js/join_event.js' %}"></script>
+{% endblock %}

@@ -8,7 +8,7 @@
                 <h1>Events</h1>
             </div>
             <div class="col text-right">
-                <button class="btn btn-primary" onclick="location.href='{% url 'create_event' %}'">Create Your Event</button>
+                <a class="btn btn-primary" href="{% url 'create_event' %}">Create Your Event</a>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
         {% for event in events %}
         <div class="col-12 mb-4">
             <div class="card card-body">
-                <a href="#" class="all-link">
+                <a href="{% url 'event_detail' event.id %}" class="all-link">
                     <div class="card-body">
                         <h5 class="card-header">{{ event.event }}</h5>
                         <p class="card-text">Event date: {{ event.event_date }}</p>

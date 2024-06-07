@@ -2,12 +2,20 @@
 
 {% block content %}
 <div class="container">
+    {% if event.id %}
+    <h2>Modify Event:</h2>
+    {% else %}
     <h2>Create Event:</h2>
+    {% endif %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <a href="{% url 'create_location' %}" class="btn btn-warning">Add City</a>
+        {% if event.id %}
+        <button type="submit" class="btn btn-primary">Modify Event</button>
+        {% else %}
         <button type="submit" class="btn btn-primary">Create Event</button>
+        {% endif %}
     </form>
 </div>
 
