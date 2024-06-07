@@ -23,5 +23,18 @@ class Event(models.Model):
     end_time = models.TimeField(blank=True)
     participants = models.PositiveIntegerField(default=0)
 
+    class Meta:
+        ordering = ["event_date"]
+
     def __str__(self):
         return self.event
+
+    def add_participants(self):
+        self.participants +=1
+        self.save()
+
+    def remove_participants(self):
+        self.participants -=1
+        self.save()
+
+

@@ -25,3 +25,4 @@ dog modify/delete
 footer
 styling all over
 display name instead of user name in events details
+limit the max "join" to the number of dogs owned. Display remove only if you joined already. limit remove to the additions you put.

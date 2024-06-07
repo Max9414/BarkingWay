@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Event
 from .forms import EventForm, LocationForm
 
@@ -43,7 +43,7 @@ def event_form_view(request, event_id=None):
     else:
         form = EventForm(instance=event)
 
-    return render(request, 'events/event_form.html', {'form': form})
+    return render(request, 'events/event_form.html', {'form': form, 'event': event})
 
 # creates the new location to add to the db
 def create_location(request):
@@ -56,6 +56,32 @@ def create_location(request):
         form = LocationForm()
     
     return render(request, 'events/create_location.html', {'form': form})
+
+
+@login_required
+def add_participants(request, event_id):
+    if request.method == "POST":
+        try:
+            event = Event.objects.get(id=event_id)
+            event.add_participants()
+            return JsonResponse({'status': 'success', 'participants': event.participants})
+        except Event.DoesNotExist:
+            return JsonResponse({'status': 'fail', 'message': 'Event does not exist'})
+    return JsonResponse({'status': 'fail', 'message': 'Invalid request'})
+
+
+@login_required
+def remove_participants(request, event_id):
+    if request.method == "POST":
+        try:
+            event = Event.objects.get(id=event_id)
+            event.remove_participants()
+            return JsonResponse({'status': 'success', 'participants': event.participants})
+        except Event.DoesNotExist:
+            return JsonResponse({'status': 'fail', 'message': 'Event does not exist'})
+    return JsonResponse({'status': 'fail', 'message': 'Invalid request'})
+
+        
 
 
 # creates the view to see the details of the event clicked

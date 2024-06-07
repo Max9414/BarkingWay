@@ -9,7 +9,7 @@ body {
 }
 
 footer {
-    height: 8em;
+    max-height: 8em;
 }
 
 .all-link {

@@ -1,10 +1,38 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    console.log('test to check if page is fully loaded');
+$(document).ready(function() {
+    $('#btn-add-participants').click(function() {
+        var eventId = $('#btn-add-participants').data('event-id'); // Assuming the event ID is stored as a data attribute
 
-    // get the button element through the ID assigned in the html
-    const joinButton = document.getElementById('join_event');
+        $.ajax({
+            url: `../add-participants/${eventId}`,
+            type: 'POST',
+            data: {
+                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    $('#participants-number').text(`Number of participants: ${response.participants} `)
+                } else {
+                    alert('Failed to add participant: ' + response.message);
+                }
+            }
+        });
+    });
+    $('#btn-remove-participants').click(function() {
+        var eventId = $('#btn-remove-participants').data('event-id'); // Assuming the event ID is stored as a data attribute
 
-    joinButton.addEventListener('click', () => {
-        console.log('test to check if event listener works')
+        $.ajax({
+            url: `../remove-participants/${eventId}`,
+            type: 'POST',
+            data: {
+                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    $('#participants-number').text(`Number of participants: ${response.participants} `)
+                } else {
+                    alert('Failed to add participant: ' + response.message);
+                }
+            }
+        });
     });
 });
