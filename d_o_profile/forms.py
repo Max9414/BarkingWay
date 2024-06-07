@@ -51,8 +51,6 @@ class DogForm(forms.ModelForm):
             'rough': "Rough player",
         }
 
-    # Override the 'breed' field to use a ModelChoiceField
-    breed = forms.ModelChoiceField(queryset=Breed.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
 
     def get_form_layout(self):
         return Layout(
