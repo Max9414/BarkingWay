@@ -2,15 +2,17 @@
 
 {% block content %}
 <div class="container-fluid">
-    <h1>Breeds</h1>
+    <h1>Useful tips:</h1>
     <div class="row">
-        {% for breed in breeds %}
+        {% for petcare in petcares %}
         <div class="col-12 mb-4">
-            <div class="card card-body">
-                <a href="{% url 'breed_detail' breed.slug %}" class="all-link">
+            <div class="card h-100 shadow-sm">
+                <a href="{% url 'petcare_detail' petcare.slug %}" class="all-link text-decoration-none text-dark">
+                    <div class="card-header bg-div">
+                        <h5 class="card-title mb-0">{{ petcare.title }}</h5>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-header">{{ breed.breed }}</h5>
-                        <p class="card-text">{{ breed.excerpt }}</p>
+                        <p class="card-text">{{ petcare.excerpt }}</p>
                     </div>
                 </a>
             </div>
@@ -26,7 +28,7 @@
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
             <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a></li>
-            <li><a href="{% url 'breed_list' %}" class="page-link">&#x1F3E0; First</a></li>
+            <li><a href="{% url 'petcare_list' %}" class="page-link">&#x1F3E0; First</a></li>
             {% endif %}
             {% if page_obj.has_next %}
             <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>

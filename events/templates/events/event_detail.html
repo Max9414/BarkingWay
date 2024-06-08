@@ -2,31 +2,37 @@
 {% load static %}
 
 {% block content %}
-
 <div class="container">
     {% csrf_token %}
-    <h2>{{ event.event }}</h2>
-    <h3>Created by: {{ event.user }}</h3>
-    <p>The event will happen {{ event.event_date }}, in {{ event.location }}</p>
-    <p>{{ event.description }}</p>
-    <p>The event will start at {{ event.start_time }}, and it is scheduled to finish (if your doggos are ok with it) at: {{ event.end_time }}</p>
-    <p id="participants-number">Number of participants: {{ event.participants }}</p>
-    <div class="row">
-        <div class="col">
-            <h4>Wanna join the event?</h4>
-        </div>
-        <div class="col">
-            <button id="btn-remove-participants" data-event-id="{{ event.id }}" class="btn btn-danger">Leave Event</button>
-            <button id="btn-add-participants" data-event-id="{{ event.id }}" class="btn btn-primary">Join Event</button>
+    <div class="card bg-div mt-5">
+        <div class="card-body">
+            <h2 class="card-title">{{ event.event }}</h2>
+            <h5 class="card-subtitle mb-3 text-muted">Created by: {{ event.user }}</h5>
+            <p class="card-text">The event will happen on {{ event.event_date }} in {{ event.location }}.</p>
+            <p class="card-text">{{ event.description }}</p>
+            <p class="card-text">The event will start at {{ event.start_time }}. It is scheduled to finish (if your doggos are ok with it) at: {{ event.end_time }}</p>
+            <p class="card-text" id="participants-number">Number of participants: {{ event.participants }}</p>
+            <div class="row">
+                <div class="col">
+                    <h4>Wanna join the event?</h4>
+                </div>
+                <div class="col custom-align">
+                    {% if user.is_authenticated %}
+                    <button id="btn-remove-participants" data-event-id="{{ event.id }}" class="btn btn-danger">Leave Event</button>
+                    <button id="btn-add-participants" data-event-id="{{ event.id }}" class="btn btn-primary">Join Event</button>
+                    {% else %}
+                    <p>Please <a href="{% url 'account_login' %}" class="all-link">login</a> to join this event.</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% if user.is_authenticated and event.user == user %}
+            <a href="{% url 'modify_event' event.id %}" class="btn btn-info mt-3">Edit Event</a>
+            {% endif %}
         </div>
     </div>
-    {% if user.is_authenticated and event.user == user %}
-    <a href="{% url 'modify_event' event.id %}">Edit Event</a>
-    {% endif %}
 </div>
-
 {% endblock %}
-    
+
 {% block scripts %}
 <script src="{% static 'js/join_event.js' %}"></script>
 {% endblock %}

@@ -38,7 +38,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
@@ -61,6 +60,7 @@ INSTALLED_APPS = [
     'homepage',
     'breeds',
     'events',
+    'petcare',
 ]
 
 SITE_ID = 1

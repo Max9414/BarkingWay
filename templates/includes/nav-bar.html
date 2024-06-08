@@ -1,4 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+{% url 'home' as home_url %}
+{% url 'breed_list' as breeds_url %}
+{% url 'event_list' as events_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
+{% url 'human_profile' as profile_url %}
+{% url 'human_creation' as human_creation_url %}
+{% url 'petcare_list' as petcare_url %}
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f0e4d7;">
     <a class="navbar-brand" href="{% url 'home' %}">BarkingWay</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,8 +17,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link {% if request.path == home_url %}active{% endif %}"
-                    href="#">Home</a>
+                <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if request.path == breeds_url %}active{% endif %}"
@@ -16,7 +25,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if request.path == petcare_url %}active{% endif %}"
-                    href="#">Pet-care</a>
+                    href="{% url 'petcare_list' %}">Pet-care</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if request.path == events_url %}active{% endif %}"
@@ -26,11 +35,11 @@
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
             <li class="nav-item custom-align">
-                <a class="nav-link {% if request.path == profile_url %}active{% endif %}" 
+                <a class="nav-link {% if request.path == profile_url %}active{% endif %}"
                     href="{% url 'human_profile' %}">Profile</a>
             </li>
             <li class="nav-item custom-align">
-                <a class="nav-link {% if request.path == logout_url %}active{% endif %}" 
+                <a class="nav-link {% if request.path == logout_url %}active{% endif %}"
                     href="{% url 'account_logout' %}">Logout</a>
             </li>
             {% else %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card bg-div mt-5">
+        <h1 class="card-title text-center">{{ petcare.title }}</h1>
+        <p class="card-text">{{ petcare.description }}</p>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary" href="{% url 'petcare_list' %}">Back to the list</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

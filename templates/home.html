@@ -2,6 +2,102 @@
 
 {% block content %}
 
-<h1>Homepage</h1>
+<div class="container">
+    <section id="welcome-section" class="mt-5">
+        <h1 class="display-4 text-center mb-4">Welcome to Our Dog Walking Community!</h1>
+        <p class="lead text-center">Are you a passionate dog lover looking for exciting opportunities to connect with
+            fellow enthusiasts and explore new adventures with your furry friends? Look no further! Our vibrant
+            community offers a plethora of events tailored to cater to every dog owner's needs and preferences. Join us
+            to discover, create, explore, and participate in various dog-friendly activities!</p>
+
+        <div class="row">
+            <div class="col-md-6 d-flex">
+                <div class="card bg-custom-card mb-4 flex-fill">
+                    <a href="{% url 'event_list' %}" class="all-link">
+                        <div class="card-body">
+                            <h2 class="mb-3">Explore a Diverse Range of Activities:</h2>
+                            <p>From group hikes to social gatherings, our community offers a wide range of activities to
+                                suit every
+                                dog lover's interests. Share your event ideas, bring them to life, and create lasting
+                                memories with
+                                your furry friends and fellow dog enthusiasts. Forge new friendships, join discussions,
+                                share tips,
+                                and bond over your love for canines!</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex">
+                <div class="card bg-custom-card mb-4 flex-fill">
+                    <a href="{% url 'breed_list' %}" class="all-link">
+                        <div class="card-body">
+                            <h2 class="mb-3">Interested in Different Breeds?</h2>
+                            <p>Are you interested in finding out about different breeds? Check out our Breeds section!
+                                Learn
+                                about
+                                various dog breeds, their characteristics, and find the perfect match for your
+                                lifestyle.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 d-flex">
+                <div class="card bg-custom-card mb-4 flex-fill">
+                    <a href="#" class="all-link">
+                        <div class="card-body">
+                            <h2 class="mb-3">Discover How to Best Take Care of Your Dog:</h2>
+                            <p>Looking for tips on how to provide the best care for your furry friend? Our Pet Care
+                                section
+                                is your
+                                go-to resource! Explore articles and guides on dog health, nutrition, grooming, and
+                                more.
+                                From
+                                choosing the right food to maintaining your dog's overall well-being, we've got you
+                                covered.
+                                Dive
+                                into a wealth of information and ensure that your beloved companion receives the love
+                                and
+                                care they
+                                deserve!</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex">
+                <div class="card bg-custom-card mb-4 flex-fill">
+                    <div class="card-body">
+                        <h2 class="mb-3">Join Our Community of Passionate Dog Lovers!</h2>
+                        <p>Are you ready to embark on an exciting journey filled with furry companionship, shared
+                            adventures,
+                            and lasting friendships? Join our vibrant community of passionate dog lovers and immerse
+                            yourself in
+                            a world of tail-wagging fun and camaraderie. Whether you're a seasoned dog owner or a
+                            newcomer to
+                            the world of canine companionship, there's a place for you here. Together, let's create
+                            unforgettable memories and celebrate the joy of dog walking in the company of
+                            like-minded
+                            individuals. Join us today and become part of something truly special!
+                            <a href="{% url 'account_signup' %}" class="all-link"
+                                style="text-decoration: underline;">Sign up!</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card bg-custom-card mb-4">
+                    <div class="card-body">
+                        <h2 class="mb-3">Enjoy every second in this page!</h2>
+                        <p>Make your self at home and feel free to share this website with your friends! Non owners are
+                            welcome too! Everyone is welcome to share the joy that our doggos bring in our lives!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
 {% endblock %}
