@@ -55,7 +55,7 @@ def modify_dog(request, dog_id):
             return redirect(reverse('dog_profile', kwargs={'dog_id': dog_instance.id}))
     else:
         form = DogForm(instance=dog_instance)
-    return render(request, 'd_o_profile/dog_profile_creation.html', {'form': form})
+    return render(request, 'd_o_profile/dog_profile_creation.html', {'form': form, 'dog': dog_instance})
 
 
 @login_required

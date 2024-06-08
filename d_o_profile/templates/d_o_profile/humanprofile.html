@@ -4,31 +4,36 @@
 {% block content %}
 
 <div class="container">
-    <h1>Profile page</h1>
-    <img src="{{ owner.image }}" alt="">
+    <h1 class="mb-4">Profile Page</h1>
+    <div class="text-center mb-4">
+        <img src="{{ owner.image }}" alt="" class="img-fluid rounded-circle" style="max-width: 150px;">
+    </div>
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center mb-4">
             <div class="col">
-                <h3>{{ owner.displayname }}</h3>
+                {% if owner.displayname %}
+                <h3 class="mb-0">{{ owner.displayname }}</h3>
+                {% else %}
+                <h3 class="mb-0">{{ owner.name }}</h3>
+                {% endif %}
             </div>
-            <div class="col align-items-center">
-                <a href="{% url 'human_update'%}">Modify profile</a>
+            <div class="col text-end">
+                <a href="{% url 'human_update' %}" class="btn btn-warning">Modify Profile</a>
             </div>
         </div>
     </div>
-    <p>{{ owner.info }}</p>
-    <h4>Owned dogs:</h4>
-    <ul>
+    <p class="mb-4">{{ owner.info }}</p>
+    <h4>Owned Dogs:</h4>
+    <ul class="list-group mb-4">
         {% for dog in owned_dogs %}
-        <li>
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-custom-card">
             <a href="{% url 'dog_profile' dog.id %}">{{ dog.name }} ({{ dog.breed }})</a>
-            <a href="{% url 'dog_update' dog.id %}" class="btn btn-primary">Modify profile</a>
+            <a href="{% url 'dog_update' dog.id %}" class="btn btn-primary btn-sm">Modify Profile</a>
         </li>
         {% endfor %}
     </ul>
-    <h4>Manage dog profile:</h4>
-    <a class="btn btn-primary" href="{% url 'dog_creation' %}">New Profile</a>
-    
+    <h4>Manage Dog Profile:</h4>
+    <a class="btn btn-primary mb-4" href="{% url 'dog_creation' %}">New Profile</a>
 </div>
 
 

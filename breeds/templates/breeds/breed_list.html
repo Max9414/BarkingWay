@@ -6,10 +6,12 @@
     <div class="row">
         {% for breed in breeds %}
         <div class="col-12 mb-4">
-            <div class="card card-body">
-                <a href="{% url 'breed_detail' breed.slug %}" class="all-link">
+            <div class="card h-100 shadow-sm">
+                <a href="{% url 'breed_detail' breed.slug %}" class="all-link text-decoration-none text-dark">
+                    <div class="card-header bg-div">
+                        <h5 class="card-title mb-0">{{ breed.breed }}</h5>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-header">{{ breed.breed }}</h5>
                         <p class="card-text">{{ breed.excerpt }}</p>
                     </div>
                 </a>
