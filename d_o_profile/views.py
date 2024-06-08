@@ -5,6 +5,7 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from .models import Dog, Owner
 from django.contrib.auth.models import User
+from events.models import Event
 from .forms import *
 
 # Create your views here.
@@ -16,7 +17,12 @@ def human_profile_view(request):
         try:
             owner = Owner.objects.get(name=request.user)
             owned_dogs = Dog.objects.filter(owner=request.user)
-            return render(request, "d_o_profile/humanprofile.html", {"owner": owner, "owned_dogs": owned_dogs})
+            events = Event.objects.filter(user=request.user)
+            return render(request, "d_o_profile/humanprofile.html", {
+                "owner": owner, 
+                "owned_dogs": owned_dogs,
+                "events": events,
+                })
         except Owner.DoesNotExist:
             return HttpResponse("No owner found for the logged in user")
     else:

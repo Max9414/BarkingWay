@@ -10,16 +10,19 @@
             <h5 class="card-subtitle mb-3 text-muted">Created by: {{ event.user }}</h5>
             <p class="card-text">The event will happen on {{ event.event_date }} in {{ event.location }}.</p>
             <p class="card-text">{{ event.description }}</p>
-            <p class="card-text">The event will start at {{ event.start_time }}. It is scheduled to finish (if your doggos are ok with it) at: {{ event.end_time }}</p>
+            <p class="card-text">The event will start at {{ event.start_time }}. It is scheduled to finish (if your
+                doggos are ok with it) at: {{ event.end_time }}</p>
             <p class="card-text" id="participants-number">Number of participants: {{ event.participants }}</p>
-            <div class="row">
+            <div class="d-flex  flex-column flex-md-row justify-content-between align-items-center">
                 <div class="col">
                     <h4>Wanna join the event?</h4>
                 </div>
                 <div class="col custom-align">
                     {% if user.is_authenticated %}
-                    <button id="btn-remove-participants" data-event-id="{{ event.id }}" class="btn btn-danger">Leave Event</button>
-                    <button id="btn-add-participants" data-event-id="{{ event.id }}" class="btn btn-primary">Join Event</button>
+                    <button id="btn-remove-participants" data-event-id="{{ event.id }}" class="btn btn-danger">Leave
+                        Event</button>
+                    <button id="btn-add-participants" data-event-id="{{ event.id }}" class="btn btn-primary">Join
+                        Event</button>
                     {% else %}
                     <p>Please <a href="{% url 'account_login' %}" class="all-link">login</a> to join this event.</p>
                     {% endif %}

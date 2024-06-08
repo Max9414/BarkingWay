@@ -4,31 +4,49 @@
 {% block content %}
 
 <div class="container">
-    <h1>Doggo page</h1>
-    <img src="{{ owner.image }}" alt="">
-    <h3>{{ dog.name }}</h3>
-    <p>{{ dog.age }}, {{ dog.breed }}</p>
-    <h4>Has {{ dog.name }} been bitten?</h4>
-    {% if dog.bitten %}
-        <p>Yes</p>
-    {% else %}
-        <p>No</p>
-    {% endif %}
-    <h4>Has {{ dog.name }} been vaccinated?</h4>
-    {% if dog.vaccinated %}
-        <p>Yes</p>
-    {% else %}
-        <p>No</p>
-    {% endif %}
-    <h4>Is {{ dog.name }} a rough player?</h4>
-    {% if dog.rough %}
-        <p>Yes</p>
-    {% else %}
-        <p>No</p>
-    {% endif %}
-    <a class="btn btn-outline-primary" href="{% url 'human_profile' %}">Back to owner</a>
-    <a class="btn btn-danger" href="{% url 'dog_delete' dog.id %}">Delete Profile</a>
-    
+    <h1 class="mb-4 text-center">Doggo Page</h1>
+    <div class="text-center mb-4">
+        <img src="{{ owner.image }}" alt="" class="img-fluid rounded-circle" style="max-width: 150px;">
+    </div>
+    <div class="card mb-4 bg-custom-card">
+        <div class="card-body text-center">
+            <h3 class="card-title">{{ dog.name }}</h3>
+            <p class="card-text">{{ dog.age }}, {{ dog.breed }}</p>
+        </div>
+    </div>
+    <div class="card mb-4 bg-custom-card">
+        <div class="card-body">
+            <h4 class="card-title">Has {{ dog.name }} been bitten?</h4>
+            {% if dog.bitten %}
+            <p class="card-text text-danger">Yes</p>
+            {% else %}
+            <p class="card-text text-success">No</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card mb-4 bg-custom-card">
+        <div class="card-body">
+            <h4 class="card-title">Has {{ dog.name }} been vaccinated?</h4>
+            {% if dog.vaccinated %}
+            <p class="card-text text-success">Yes</p>
+            {% else %}
+            <p class="card-text text-danger">No</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card mb-4 bg-custom-card">
+        <div class="card-body">
+            <h4 class="card-title">Is {{ dog.name }} a rough player?</h4>
+            {% if dog.rough %}
+            <p class="card-text text-danger">Yes</p>
+            {% else %}
+            <p class="card-text text-success">No</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="text-center">
+        <a class="btn btn-outline-primary" href="{% url 'human_profile' %}">Back to Owner</a>
+    </div>
 </div>
 
 

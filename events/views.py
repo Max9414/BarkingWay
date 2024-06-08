@@ -45,6 +45,16 @@ def event_form_view(request, event_id=None):
 
     return render(request, 'events/event_form.html', {'form': form, 'event': event})
 
+# deletes an event if it's an event from the current user 
+# (this passage is controlled in the modify part that leads to the possibility to delete)
+@login_required
+def event_delete(request, event_id):
+    event_instance = get_object_or_404(Event, id=event_id)
+    if request.method == "POST":
+        event_instance.delete()
+        return redirect('event_list')
+    return render(request, 'events/delete_event.html', {'event': event_instance})
+
 # creates the new location to add to the db
 def create_location(request):
     if request.method == "POST":

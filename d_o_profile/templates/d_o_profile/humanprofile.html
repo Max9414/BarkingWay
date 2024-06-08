@@ -18,7 +18,7 @@
                 {% endif %}
             </div>
             <div class="col text-end">
-                <a href="{% url 'human_update' %}" class="btn btn-warning">Modify Profile</a>
+                <a href="{% url 'human_update' %}" class="btn btn-warning btn-smaller">Modify Profile</a>
             </div>
         </div>
     </div>
@@ -26,14 +26,33 @@
     <h4>Owned Dogs:</h4>
     <ul class="list-group mb-4">
         {% for dog in owned_dogs %}
-        <li class="list-group-item d-flex justify-content-between align-items-center bg-custom-card">
-            <a href="{% url 'dog_profile' dog.id %}">{{ dog.name }} ({{ dog.breed }})</a>
-            <a href="{% url 'dog_update' dog.id %}" class="btn btn-primary btn-sm">Modify Profile</a>
+        <li
+            class="list-group-item d-flex  flex-column flex-md-row justify-content-between align-items-center bg-custom-card">
+            <a href="{% url 'dog_profile' dog.id %}" class="all-link small-margin">{{ dog.name }} ({{ dog.breed }})</a>
+            <div>
+                <a href="{% url 'dog_update' dog.id %}" class="btn btn-primary btn-smaller">Modify Profile</a>
+                <a href="{% url 'dog_delete' dog.id %}" class="btn btn-danger btn-smaller">Delete Profile</a>
+            </div>
         </li>
         {% endfor %}
     </ul>
     <h4>Manage Dog Profile:</h4>
-    <a class="btn btn-primary mb-4" href="{% url 'dog_creation' %}">New Profile</a>
+    <a class="btn btn-primary mb-4 btn-smaller" href="{% url 'dog_creation' %}">New Profile</a>
+    <h4>Created Events:</h4>
+    <ul class="list-group mb-4">
+        {% for event in events %}
+        <li
+            class="list-group-item d-flex  flex-column flex-md-row justify-content-between align-items-center bg-custom-card">
+            <a href="{% url 'event_detail' event.id %}" class="all-link small-margin">{{ event.event }}
+                ({{ event.event_date }})</a>
+            <div>
+                <a href="{% url 'modify_event' event.id %}" class="btn btn-primary btn-smaller">Modify
+                    Event</a>
+                <a href="{% url 'event_delete' event.id %}" class="btn btn-danger btn-smaller">Delete Event</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
 
