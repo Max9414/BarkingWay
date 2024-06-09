@@ -12,6 +12,9 @@ class Breed(models.Model):
     def __str__(self):
         return self.breed
 
+    class Meta:
+        ordering = ["breed"]
+
     #this autogenerates the slug field for url based on the breed
     def save(self, *args, **kwargs):
         if not self.slug:
