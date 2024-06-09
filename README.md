@@ -317,6 +317,62 @@ Register, login and logout have been taken directly from codeinstitue course. Me
 
 ## Testing
 
+### Manual Testing
+
+**General**
+
+- All the buttons, text and search fields are reduced in smaller screens correctly
+- search fields and search buttons are next to each other in big screens and one on top of each other in smaller screens correctly.
+
+**Navbar**
+
+- Navbar is fully responsive on every screen resolution
+- In smaller screens, the navbar turns into a folded menu
+- All links are correctly redirecting to the correct pages.
+- Login, register, logout are all fully functional
+- Logout correctly brings you to the "are you sure" page.
+
+**Footer**
+
+- The footer has been changed from stick, to fixed, to just normal
+- The downside of having sticky/fixed bottom were too much greater than the upsides
+
+**Events**
+
+- Event details show correctly
+- Only events from today on are shown correctly
+- Pagination works with only shown events
+- Create event button and page work correctly
+- Search fields initially presented a problem as the location field in the Event model is an id as it's a foreignkey, giving therefore a problem when words were used in the search bar
+
+**Petcare and Breeds**
+
+- Pages correctly show a list of all the elements
+- Pages correctly load the detail page on request
+- Detail page correctly bring back to the list through button
+- Search fields work correctly on both pages
+
+**Homepage**
+
+- Page correctly bring the user to the selected pages from the description
+- Signup button also works correctly
+
+**Admin**
+
+- Admin can delete, modify and create every model correctly
+
+**Creation pages**
+
+- All creation pages work correctly
+- Fields present errors when left empty and should be filled with data
+- Fields do not give errors when blank=true
+
+**Delete pages**
+
+- Show delete warning and "are you sure" page correctly
+- Redirect to the relative page, event list for events and profile for dogs
+- a return to the human profile if event was deleted through that could be added.
+
 **Validation**
 [W3C HTML Validator](https://validator.w3.org/)
 
@@ -338,3 +394,124 @@ Register, login and logout have been taken directly from codeinstitue course. Me
 
 - Python syntax checker have been used to check all the files
 - there are a couple of "over 79 characters" as it would break the logic otherwise, but everything else is fine (the website gives an error to put whitespaces before operators, but it's always on characters used for naming conventions)
+
+### Bugs and fixes
+
+**Footer not staying properly to the bottom**
+
+- After using fixed for a while, I've changed it using flex-grow in the body element, so that the footer get pushed at the bottom.
+- The main issue was in phone sizes (not visible with google dev tools, as in dev tools was working properly), where there was noway to reach the button at the end of the page to create events or register
+
+**is_attending not working**
+
+- The function is_attending was called correctly, but the same view was called further down in my code (and I didn't notice) so, since Python works from the bottom up, the view was not beheaving correctly
+- Properly learnt how to use the print statements in Django due to this.
+
+**location field search bar**
+
+- The location field search bar was giving an error as I wrongly declared how to search. I connected the search to the id field instead of the correct module with the textfield model.
+
+**Javascript buttons**
+
+- Interactions between js and database is great, but it also requires some extra steps
+- While coding the buttons in js to increase the number of participants, I couldn't understand why the function was being called properly, adding therefore 1 participant, but it was not showing.
+- After reading again the explanation about the interaction of js with the database, I understood the problem was simply that the page, not being reloaded, was not automatically updating the number of participants. It was in the database, but not in the front end.
+- After understanding the problem, fixing it has been really easy, using another ID to catch the participant counter in the html and updating it again through js
+
+## Deployment
+
+The master branch of this repository is the most current version and has been used for the deployed version of the site.
+
+The Code Institiue student template was used to create this project.
+
+- Click the _Use This Template_ button.
+- Give your repository a name, and description if you wish.
+- Click the _Create Repository from Template_ to create your repository.
+- Click the _Gitpod_ button to create a gitpod workspace, this can take a few minutes.
+- When working on project using Gitpod, please open the workspace from Gitpod, this will open your previous workspace rather than creating a new one.
+  Use the following commands to commit your work,
+- `git add . ` - adds all modified files to a staging area.
+- `git commit -m "A short message exlaining your commit"` - commits all changes to a local repository.
+- `git push` - pushes all your commited changes to your Github repository.
+
+**Heroku Deployment**
+
+1. Log into Heroku
+2. Create a new app, choose a location closest to you
+3. Make sure to have `dj_database_url` and `psycopg2` installed.
+
+```
+pip3 install dj_database_url
+pip3 install psycopg2
+```
+
+4. Create a superuser to freely use and manage db - `python3 manage.py createsuperuser`
+5. Install `gunicorn` - `pip3 install gunicorn`
+6. Create a requirements.txt file - `pip3 freeze > requirements.txt`
+7. Create a `Procfile` (note the capital P), and add the following,
+
+```
+web: gunicorn BarkingWay.wsgi
+```
+
+8. Disable Heroku from collecting static files - `heroku config:set DISABLE_COLLECTSTATIC=1 --app <your-app-name>`
+9. Add the hostname to project settings.py file
+
+```
+ALLOWED_HOSTS = ['<you-app-name>.herokuapp.com', 'localhost']
+
+```
+
+10. Connect Heroku to you Github, by selecting Github as the deployment method and search for the github repository and pressing `connect`
+11. In Heroku, within settings, under config vars select `Reveal config vars`
+12. Add the following:
+
+```
+DATABASE_URL = <your variable here>
+DISABLE_COLLECTSTATIC = 1 (as shown above, if forgot)
+SECRET_KEY = <your variable here>
+```
+
+13. Back in your CLI add, commit and push your changes
+
+```
+git add .
+git commit -m "Initial commit"
+git push
+```
+
+14. Go back to the Deploy tab and select deploy branch at the bottom of the page
+15. Your deployed site can be launched by clicking `Open App` from its page within Heroku.
+
+## Credits
+
+**Code Institute**
+
+- All the login, logout and register code comes from the codeinstitute walkthrough "I think therefore I blog"
+
+**Chat GPT**
+
+- All the static files data, like the pet care tips and tricks and the breeds descriptions have been provided by chatGPT.
+
+**Harry**
+
+- The readme file has been improved massively after tips and suggestions from my mentor
+
+**Andreas Jud**
+
+- a single snippet of code has been taken from the youtuber Andreas Jud to create an owner from the user registration.
+- [video](https://www.youtube.com/watch?v=SQ4A7Q6_md8)
+
+```
+@receiver(post_save, sender=User)
+def user_postsave(sender, instance, created, **kwargs):
+    user = instance
+
+    # Add owner profile if user is created
+    if created:
+        owner = Owner.objects.create(name=user)
+```
+
+**Tomas_K_Alumni_lead**
+
+- Tomas helped me greatly debugging my views. For a silly mistake, I had two exact same views and I was working only on the one on the top. As Python works its way from the bottom up, the function called was the one at the very bottom which I didn't notice, causing me lots of issues trying to debug a function that was actually working.
