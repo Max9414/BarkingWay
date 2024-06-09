@@ -3,6 +3,21 @@
 {% block content %}
 <div class="container-fluid">
     <h1>Breeds</h1>
+    <form method="GET" action="{% url 'breed_list' %}" class="mb-4">
+        <div class="row g-3">
+            <div class="col">
+                <input type="text" name="q" class="form-control" placeholder="Search by keywords..."
+                    value="{{ request.GET.q }}">
+            </div>
+            <div class="col">
+                <input type="text" name="breed" class="form-control" placeholder="Filter by breed..."
+                    value="{{ request.GET.breed }}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
     <div class="row">
         {% for breed in breeds %}
         <div class="col-12 mb-4">
