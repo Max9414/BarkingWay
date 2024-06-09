@@ -10,6 +10,33 @@ Welcome to this amazing website dedicated to walks and events for dogs, which ai
 
 ![Responsive Image]()
 
+Link tree:
+
+- [Website core feature](#website-core-feature)
+- [Website updated features](#website-updated-features)
+  - [Research and filters](#research-and-filters)
+  - [Filtering events](#filtering-events)
+  - [Joined event checker](#joined-event-checker)
+- [STRATEGY](#strategy)
+- [PURPOSE](#purpose)
+- [SCOPE](#scope)
+  - [Authentication and user](#authentication-and-user)
+  - [CRUD and dynamic pages](#crud-and-dynamic-pages)
+  - [Home, static pages and styling](#home-static-pages-and-styling)
+  - [Optional features](#optional-features)
+- [STRUCTURE](#structure)
+  - [Project applications](#project-applications)
+- [SKELETON](#skeleton)
+- [SURFACE](#surface)
+- [Pages](#pages)
+  - [Breeds and Pet-care](#breeds-and-pet-care)
+  - [Homepage](#homepage)
+  - [Events](#events)
+  - [D_o_profile](#d_o_profile)
+- [Tests](#tests)
+- [Main Problems](#main-problems)
+- [Credits](#credits)
+
 # Website core feature
 
 The website has been thought around the events page, plus different pages for new owners in search of a good website with reliable informations or good tips.\
