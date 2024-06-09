@@ -12,6 +12,7 @@ class BreedList(generic.ListView):
     context_object_name = 'breeds'
     paginate_by = 6
 
+
     def get_queryset(self):
         queryset = super().get_queryset()
         query = self.request.GET.get('q')
@@ -25,12 +26,12 @@ class BreedList(generic.ListView):
             )
 
         if breed_filter:
-            queryset = queryset.filter(breed__icontains=breed_filter)
+            queryset = queryset.filter(
+                breed__icontains=breed_filter)
 
         return queryset
 
 
-# view to access the db using the slug to get the correct db data
 def breed_detail(request, slug):
     breed = get_object_or_404(Breed, slug=slug)
     return render(request, 'breeds/breed_detail.html', {'breed': breed})

@@ -22,29 +22,35 @@ class Breed(models.Model):
 
 #model for the db for the dog's profiles
 class Dog(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="dogs")
+    owner = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="dogs")
     name = models.CharField(max_length=200)
-    breed = models.ForeignKey(Breed, on_delete=models.CASCADE, related_name="dogs")
+    breed = models.ForeignKey(
+        Breed, on_delete=models.CASCADE, related_name="dogs")
     age = models.IntegerField(choices=AGE_CHOICES)
     bitten = models.BooleanField(default=False)
     vaccinated = models.BooleanField(default=False)
     rough = models.BooleanField(default=False)
 
-    #orders the dogs by breed first, then name
     class Meta:
         ordering = ["breed", "name"]
 
-    #shows the dog's name and breed in the admin page
+
     def __str__(self):
         return f"{self.name} ({self.breed})"
 
 
 #model for the db for the human profile
 class Owner(models.Model):
-    name = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='avatars/', null=True, blank=True)
-    displayname = models.CharField(max_length=20, null=True, blank=True)
-    info = models.TextField(null=True, blank=True)
+    name = models.OneToOneField(
+        User, on_delete=models.CASCADE)
+    image = models.ImageField(
+        upload_to='avatars/', null=True, blank=True)
+    displayname = models.CharField(
+        max_length=20, null=True, blank=True)
+    info = models.TextField(
+        null=True, blank=True)
+
 
     def __str__(self):
         if self.displayname:
@@ -52,6 +58,7 @@ class Owner(models.Model):
         else:
             name = self.name.username
         return name
+
 
     @property
     def avatar(self):

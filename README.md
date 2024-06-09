@@ -333,3 +333,8 @@ Register, login and logout have been taken directly from codeinstitue course. Me
 - 2 warnings
   - 24 'template literal syntax' is only available in ES6 (use 'esversion: 6').
   - 43 'template literal syntax' is only available in ES6 (use 'esversion: 6').
+
+[PEP8 validator](https://www.pythonchecker.com/)
+
+- Python syntax checker have been used to check all the files
+- there are a couple of "over 79 characters" as it would break the logic otherwise, but everything else is fine (the website gives an error to put whitespaces before operators, but it's always on characters used for naming conventions)

@@ -5,8 +5,11 @@ from .models import Owner, Dog, Breed
 
 AGE_CHOICES = [(i, str(i)) for i in range(1, 21)]
 
-# Form designed for managing Dog model instances, utilizing the crispy-forms library to enhance its layout and usability.
+
 class DogForm(forms.ModelForm):
+    """
+    Form designed to manage Dog model instances
+    """
     def __init__(self, *args, **kwargs):
         super(DogForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -36,9 +39,10 @@ class DogForm(forms.ModelForm):
             'rough',
         )
 
-
-# Form designed for managing Owner model instances, utilizing the crispy-forms library to enhance its layout and usability.
 class OwnerForm(forms.ModelForm):
+    """
+    Form designed to manage owner model instances
+    """
     def __init__(self, *args, **kwargs):
         super(OwnerForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -53,6 +57,7 @@ class OwnerForm(forms.ModelForm):
             'displayname': 'display name',
             'info': "info",
         }
+
 
     def get_form_layout(self):
         return Layout(

@@ -10,10 +10,16 @@ from .forms import EventForm, LocationForm
 # Create your views here.
 
 class EventList(generic.ListView):
+    """
+    Display all the events from today on.
+    Allows research for location and event
+    date.
+    """
     model = Event
     template_name = "events/event_list.html"
     context_object_name = 'events'
     paginate_by = 6
+
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -32,18 +38,24 @@ class EventList(generic.ListView):
         return queryset
 
 
-# shows all the details of the event
 def event_detail(request, event_id):
+    """
+    shows all the details of the event.
+    """
     event = get_object_or_404(Event, id=event_id)
-    is_attending = EventParticipant.is_attending(event, request.user)
-    return render(request, 'events/event_detail.html', {'event': event, 'is_attending': is_attending})
+    is_attending = EventParticipant.is_attending(
+        event, request.user)
+    return render(request, 'events/event_detail.html', {
+        'event': event, 'is_attending': is_attending})
 
 
-# creates new event to add to the db and list in the event list
-# it also allows the user to modify the created event while the fields get autopopulated with
-# the original event details
 @login_required
 def event_form_view(request, event_id=None):
+    """
+    creates new event to add to the db and list
+    in the event list.
+    Allows to modify created event
+    """
     if event_id:
         event = get_object_or_404(Event, id=event_id)
     else:
@@ -57,24 +69,34 @@ def event_form_view(request, event_id=None):
             event.save()
             return redirect('event_detail', event_id=event.id)
         else:
-            return HttpResponse("Form is invalid, check the fields")
+            return HttpResponse(
+                "Form is invalid, check the fields")
     else:
         form = EventForm(instance=event)
 
-    return render(request, 'events/event_form.html', {'form': form, 'event': event})
+    return render(request, 'events/event_form.html', {
+        'form': form, 'event': event})
 
-# deletes an event if it's an event from the current user 
-# (this passage is controlled in the modify part that leads to the possibility to delete)
+
 @login_required
 def event_delete(request, event_id):
+    """
+    deletes an event if it's an event from the 
+    current user
+    """
     event_instance = get_object_or_404(Event, id=event_id)
     if request.method == "POST":
         event_instance.delete()
         return redirect('event_list')
-    return render(request, 'events/delete_event.html', {'event': event_instance})
+    return render(request, 'events/delete_event.html', {
+        'event': event_instance})
 
-# creates the new location to add to the db
+
 def create_location(request):
+    """
+    creates the location to add
+    to the db
+    """
     if request.method == "POST":
         form = LocationForm(request.POST)
         if form.is_valid():
@@ -83,35 +105,50 @@ def create_location(request):
     else:
         form = LocationForm()
     
-    return render(request, 'events/create_location.html', {'form': form})
+    return render(request, 'events/create_location.html', {
+        'form': form})
 
 
-# add participants and uses jsonresponse as I utilized js to update the db
-# without needing to load the user to another page
-# they can be further improved adding the user.id check to let every
-# user join only once and, when joined, leave
 @login_required
 def add_participants(request, event_id):
+    """
+    Add participants and uses jsonresponse to
+    communicate with the js file
+    It also add the user to a db with the selected
+    event to avoid multiple joins from a single user
+    """
     if request.method == "POST":
         try:
             event = Event.objects.get(id=event_id)
             event.add_participants(request.user)
-            return JsonResponse({'status': 'success', 'participants': event.participants})
+            return JsonResponse({
+                'status': 'success', 'participants': event.participants})
         except Event.DoesNotExist:
-            return JsonResponse({'status': 'fail', 'message': 'Event does not exist'})
-    return JsonResponse({'status': 'fail', 'message': 'Invalid request'})
+            return JsonResponse({
+                'status': 'fail', 'message': 'Event does not exist'})
+    return JsonResponse({
+        'status': 'fail', 'message': 'Invalid request'})
 
 
 @login_required
 def remove_participants(request, event_id):
+    """
+    Remove participants and uses jsonresponse to
+    communicate with the js file
+    It also remove the user from db with the selected
+    event to avoid multiple leaves from a single user
+    """
     if request.method == "POST":
         try:
             event = Event.objects.get(id=event_id)
             event.remove_participants(request.user)
-            return JsonResponse({'status': 'success', 'participants': event.participants})
+            return JsonResponse({
+                'status': 'success', 'participants': event.participants})
         except Event.DoesNotExist:
-            return JsonResponse({'status': 'fail', 'message': 'Event does not exist'})
-    return JsonResponse({'status': 'fail', 'message': 'Invalid request'})
+            return JsonResponse({
+                'status': 'fail', 'message': 'Event does not exist'})
+    return JsonResponse({
+        'status': 'fail', 'message': 'Invalid request'})
 
 
 

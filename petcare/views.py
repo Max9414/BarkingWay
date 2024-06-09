@@ -11,7 +11,13 @@ class PetCareList(generic.ListView):
     context_object_name = 'petcares'
     paginate_by = 6
 
+
     def get_queryset(self):
+        """
+        allow the frontend to search
+        in the database searching by
+        title, description and excerpt
+        """
         queryset = super().get_queryset()
         query = self.request.GET.get('q')
         title_filter = self.request.GET.get('title')
@@ -24,11 +30,13 @@ class PetCareList(generic.ListView):
             )
 
         if title_filter:
-            queryset = queryset.filter(title__icontains=title_filter)
+            queryset = queryset.filter(
+                title__icontains=title_filter)
 
         return queryset
 
 
 def petcare_detail(request, slug):
     petcare = get_object_or_404(PetCare, slug=slug)
-    return render(request, 'petcare/petcare_detail.html', {'petcare': petcare})
+    return render(request, 'petcare/petcare_detail.html', {
+        'petcare': petcare})
