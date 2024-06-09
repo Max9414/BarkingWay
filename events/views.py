@@ -28,7 +28,7 @@ class EventList(generic.ListView):
         event_date_filter = self.request.GET.get('event_date')
 
         if location_filter:
-            queryset = queryset.filter(location=location_filter)
+            queryset = queryset.filter(location__location=location_filter)
         
         if event_date_filter:
             queryset = queryset.filter(event_date=event_date_filter)
