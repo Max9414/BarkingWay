@@ -51,6 +51,9 @@ def create_dog(request):
     return render(request, 'd_o_profile/dog_profile_creation.html', {'form': form})
 
 
+# creates the view for the dog modification, using the same html of the creation view
+# which was updated with needed logic to show the correct text for both scenarios.
+# the id is used to capture the correct dog in the db
 @login_required
 def modify_dog(request, dog_id):
     dog_instance = get_object_or_404(Dog, id=dog_id)
@@ -64,6 +67,7 @@ def modify_dog(request, dog_id):
     return render(request, 'd_o_profile/dog_profile_creation.html', {'form': form, 'dog': dog_instance})
 
 
+# simple view that redirects to a confirm page and deletes the dog from the db
 @login_required
 def delete_dog(request, dog_id):
     dog_instance = get_object_or_404(Dog, id=dog_id)
@@ -73,6 +77,8 @@ def delete_dog(request, dog_id):
     return render(request, 'd_o_profile/confirm_delete.html', {'dog': dog_instance})
 
 
+# simple view to access the db of the owner and modify its data.
+# it uses the owner name, which is created by the user nickname, which is unique.
 @login_required
 def modify_owner(request):
     owner_instance = get_object_or_404(Owner, name=request.user)

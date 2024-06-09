@@ -9,6 +9,6 @@ from .models import Owner
 def user_postsave(sender, instance, created, **kwargs):
     user = instance
 
-    # Add profile if user is created
+    # Add owner profile if user is created
     if created:
         owner = Owner.objects.create(name=user)

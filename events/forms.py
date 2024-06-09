@@ -30,7 +30,7 @@ class EventForm(forms.ModelForm):
         if start_time and end_time and end_time < start_time:
             raise ValidationError("End time can't be earlier than start time")
 
-
+        # Check for date to be later than the day of creation
         if event_date <= timezone.now().date():
             raise ValidationError("Event date cannot be today or in the past. Please select a future date.")
 

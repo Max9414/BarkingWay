@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+# Model to manage location (cities)
 class Location(models.Model):
     location = models.CharField(max_length=200, unique=True)
 
@@ -12,6 +13,7 @@ class Location(models.Model):
     def __str__(self):
         return self.location
 
+# Model to manage events, connected to both Location and User db
 class Event(models.Model):
     event = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_event')
@@ -29,6 +31,7 @@ class Event(models.Model):
     def __str__(self):
         return self.event
 
+    # both used to add or remove participants from the event.
     def add_participants(self):
         self.participants +=1
         self.save()

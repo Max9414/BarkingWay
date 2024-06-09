@@ -68,6 +68,10 @@ def create_location(request):
     return render(request, 'events/create_location.html', {'form': form})
 
 
+# add participants and uses jsonresponse as I utilized js to update the db
+# without needing to load the user to another page
+# they can be further improved adding the user.id check to let every
+# user join only once and, when joined, leave
 @login_required
 def add_participants(request, event_id):
     if request.method == "POST":

@@ -1,3 +1,7 @@
+// This js allow the user to join and/or leave an event. The counter gets automatically
+// updated as the user clicks the buttons. As of now, there is no logic to stop the same user
+// from deleting all the participant count or to stop from clicking a million times
+// this is definitely a feature to improve
 $(document).ready(function() {
     $('#btn-add-participants').click(function() {
         var eventId = $('#btn-add-participants').data('event-id'); // Assuming the event ID is stored as a data attribute
