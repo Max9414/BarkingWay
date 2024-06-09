@@ -149,3 +149,187 @@ For the fonts I used Roboto, an easy and clear style. I opted for a single font 
 ---
 
 ## The Skeleton Plane
+
+The idea of my project has been the same from the beginning, only missing a page with really advanced api features.
+
+![Base html wireframes](documentation/base_html.jpg)
+
+- I wanted a clear navbar, clearly divided between profile features and website unique features
+- This distinction had to be removed from the smaller screens as it was resulting not really appealing
+- basic footer
+- warm colours for the body and footer/header
+
+![All detail pages wireframes](documentation/details_pages.jpg)
+
+- I wanted the pages to be clear and easy, so the styling is extremely essential
+
+![Static pages wireframes](documentation/breeds_petcare.jpg)
+
+- The static pages are simple and clean
+- research bars for keywords and titles (or breed name) are clear and useful
+- simple pagination
+
+![Event page wireframes](documentation/event_page.jpg)
+
+- The event page list has been made similar to petcare and breed
+- A difference between them is the possibility to create events
+- The cards present infos to know directly, before going in the details, if it's possible for the person to join
+
+![Homepage wireframes](documentation/homepage.jpg)
+
+- The homepage has to be clear and catchy
+- To be catchy, I decided to add some links directly to the cards and show clearly every page feature with a small description
+- the styling is simple, yet warm
+
+![Profile page wireframes](documentation/profile_page.jpg)
+
+- Interactive page with infos about dogs and events
+- It's fully responsive and it helps managing the owner needs
+
+Register, login and logout have been taken directly from codeinstitue course. Mentioned in the credits too.
+
+## The Surface Plane
+
+### Features
+
+**Features present across the project**
+
+**Nav-bar**
+
+- The Navbar is implemented in every page of the project as it's in the base layout
+- It allows the user to move freely and clearly between pages
+- It clearly highlights the page you're currently on
+  ![navbar](documentation/navbar.png)
+
+**Footer**
+
+- The footer just complements the page, giving a closure with the same colour of the navbar
+  ![footer](documentation/footer.png)
+
+**Homepage**
+
+- The homepage presents a short clear description of the page
+- The homepage presents a short description to all the pages in the website
+- The cards in the homepage are links to the respective pages
+  ![homepage](documentation/homepage_website.png)
+
+**breeds page**
+
+- Page dedicated to breeds descriptions to help new owners find the right dogs for them
+  ![breeds page](documentation/breeds_page.png)
+
+**petcare page**
+
+- Page dedicated to useful tips to take good care of your dog
+  ![petcare page](documentation/petcare_page.png)
+
+**events page**
+
+- Page dedicated to show the list of events in cronological order of event date, from sooner to later
+- Page allows registered user to create an event or asks to user to login to create an event
+- Allows research for location and date
+  ![events page](documentation/events_page.png)
+
+**events detail page**
+
+- Allow user to see details and join or leave event
+- Allows creator to modify the event
+- asks visitor to login to join the event
+  ![event detail](documentation/event_detail_page.png)
+
+**events detail for creator of event**
+
+- Same as above, but allows user to modify the event
+  ![event detail owner](documentation/detail_event_creator.png)
+
+**events creator**
+
+- The page allows the logged in user to create an event
+- The layout is rendered throught django template
+  ![event creation](documentation/creation_page.png)
+
+**modify event**
+
+- Like creation page, but it autofills the data from the existing data
+  ![event modification](documentation/manage_event_page.png)
+
+**modify profiles**
+
+- Allows the registered user to modify both theirs and their dog profiles
+  ![profile modification](documentation/modify_profile_page.png)
+  ![dog profile modification](documentation/modify_dog_profile_page.png)
+
+**profile page**
+
+- Allows the user to control all the created events and the dog profiles of his account
+  ![profile page](documentation/profile_page.png)
+
+**create dog profile**
+
+- Allows user to add a dog profile to their account
+- Same as dog modification, but fields aren't prefilled
+
+**city add page**
+
+- Allows the user to add a city to the db
+  ![location add page](documentation/city_add_page.png)
+
+---
+
+## Technologies Used
+
+- [Python](https://www.python.org/)
+  - Python modules:
+  - asgiref==3.8.1
+  - dj-database-url==2.2.0
+  - Django==5.0.6
+  - django-allauth==0.63.3
+  - django-cleanup==8.1.0
+  - django-crispy-forms==2.1
+  - django-htmx==1.17.3
+  - django-summernote==0.8.20.0
+  - gunicorn==22.0.0
+  - pillow==10.3.0
+  - psycopg2==2.9.9
+  - sqlparse==0.5.0
+  - whitenoise==6.6.0
+- PostgreSQL
+
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+
+- [CSS](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics)
+
+- [Bootstrap](https://getbootstrap.com/)
+
+- [jQuery](https://jquery.com/)
+
+- [JavaScript](https://www.javascript.com/)
+
+- [Google Fonts](https://fonts.google.com/)
+
+- [Google Developer Tools](https://developers.google.com/web/tools/chrome-devtools)
+
+- [Github](https://github.com/)
+
+- [Git](https://git-scm.com/)
+
+- [Gitpod](https://www.gitpod.io/)
+
+## Testing
+
+**Validation**
+[W3C HTML Validator](https://validator.w3.org/)
+
+- 0 errors
+- 0 warnings
+- tested through links and, to be sure, on source on 3 pages
+
+[W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+
+- Congratulations! No Error Found.
+
+[JSHint JavaScript Validator](https://jshint.com/)
+
+- 2 warnings
+  - 24 'template literal syntax' is only available in ES6 (use 'esversion: 6').
+  - 43 'template literal syntax' is only available in ES6 (use 'esversion: 6').
