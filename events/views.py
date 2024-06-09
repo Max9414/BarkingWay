@@ -3,6 +3,7 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
+from django.db.models import Q
 from .models import Event
 from .forms import EventForm, LocationForm
 
@@ -13,6 +14,22 @@ class EventList(generic.ListView):
     template_name = "events/event_list.html"
     context_object_name = 'events'
     paginate_by = 6
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        location_filter = self.request.GET.get('location')
+        event_date_filter = self.request.GET.get('event_date')
+
+        if location_filter:
+            queryset = queryset.filter(location=location_filter)
+        
+        if event_date_filter:
+            queryset = queryset.filter(event_date=event_date_filter)
+        else:
+            queryset = queryset.upcoming_events()
+        
+        return queryset
 
 
 # shows all the details of the event

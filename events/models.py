@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
@@ -13,6 +14,13 @@ class Location(models.Model):
     def __str__(self):
         return self.location
 
+
+class EventQuerySet(models.QuerySet):
+    def upcoming_events(self):
+        today = timezone.now().date()
+        return self.filter(event_date__gte=today) #checks if event_date is
+        # gte (Greater Than or Equal to) today
+
 # Model to manage events, connected to both Location and User db
 class Event(models.Model):
     event = models.CharField(max_length=200)
@@ -24,6 +32,8 @@ class Event(models.Model):
     start_time = models.TimeField()
     end_time = models.TimeField(blank=True)
     participants = models.PositiveIntegerField(default=0)
+
+    objects = EventQuerySet.as_manager() #defines custom querysets with asmanager
 
     class Meta:
         ordering = ["event_date"]
