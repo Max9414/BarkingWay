@@ -1,4 +1,4 @@
-# F1 Dublin Race Ticket Booking System
+# BaringWay dog walk and dog events website
 
 ## Introduction
 
@@ -12,10 +12,33 @@ Welcome to this amazing website dedicated to walks and events for dogs, which ai
 
 ## Website updated features
 
-Implementing the research and filter has been easier than expected.\
-Implementing a filter to show only the events of today and future has been harder. The main issue has been understanding the logic. I've already worked with logic through models and views,
-but my habit still goes to the html page rather than to the db itself. After failing many times trying to implement logic in the html and realising I could just implement the same logic in the db itself, the solution has been pretty fast to find.\
-The last implementantion, the checker to see if someone joined already the event or not, is being really problematic. I've added correctly the logic to save user and event, the db updates correctly, but I can't seem to do the last part of logic to show the currect button. Even though when troubleshooting I receive the correct user and event value, I can't seem to make the logic work.
+### Research and filters
+
+The implementation of this feature has been easier than expected.\
+The main points to implement it have been:
+
+- understanding how the import q functioned
+- adapt the explanation in the documentation to my project logic
+
+### Filtering events
+
+Filtering events have been a bit harder than expected.\
+The main issues have been:
+
+- finding the correct import to use to find today's date in a dynamic way
+- getting out of my conventional way of thinking, aka relying on html instead of database logic
+- implementing the logic in the model
+
+### Joined event checker
+
+This implementantion has been relatively easy for the logic:
+
+- I added a new db taking events and user
+- create a def with the event and the user to implement in the view
+- using the view logic to check if the user already joined the event through the db
+
+The main issue has been with a really silly problem: I had 2 event_detail views.\
+I haven't noticed that and, while I was trying to print statements to the terminal, nothing was showing up. With the help of Tomas_k_alumni_lead, who explained to me that python goes from the bottom up and found the double view, the problem has been solved really quickly.
 
 ## STRATEGY
 
@@ -162,6 +185,8 @@ I've struggled with deployment to heroku, as the passages are little tricky. Try
 challenging, but definitely useful for future projects.
 
 ### Credits
+
+As my readme file is always lacking, I followed the structure of Grawnya repository on F1 booking tickets, adapting it to my style and hopefully being thorough enough.\
 
 I've followed a video to understand how to create automatically the owner from a registration, but I actually decided to only use a little snippet of the whole video
 and do authentications, login, logout and registration following the course.\

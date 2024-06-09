@@ -35,7 +35,6 @@ class EventList(generic.ListView):
 # shows all the details of the event
 def event_detail(request, event_id):
     event = get_object_or_404(Event, id=event_id)
-    print(f'Event ID: {event_id}, Retrieved Event: {event}')  # Debugging print statement
     is_attending = EventParticipant.is_attending(event, request.user)
     return render(request, 'events/event_detail.html', {'event': event, 'is_attending': is_attending})
 
