@@ -14,7 +14,7 @@ class PetCareList(generic.ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         query = self.request.GET.get('q')
-        petcare_filter = self.request.GET.get('petcare')
+        title_filter = self.request.GET.get('title')
 
         if query:
             queryset = queryset.filter(
@@ -23,8 +23,8 @@ class PetCareList(generic.ListView):
                 Q(excerpt__icontains=query)
             )
 
-        if petcare_filter:
-            queryset = queryset.filter(petcare__icontains=petcare_filter)
+        if title_filter:
+            queryset = queryset.filter(title__icontains=title_filter)
 
         return queryset
 

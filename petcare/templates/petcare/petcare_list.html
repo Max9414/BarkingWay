@@ -10,8 +10,8 @@
                     value="{{ request.GET.q }}">
             </div>
             <div class="col">
-                <input type="text" name="petcare" class="form-control" placeholder="Filter by title..."
-                    value="{{ request.GET.petcare }}">
+                <input type="text" name="title" class="form-control" placeholder="Filter by title..."
+                    value="{{ request.GET.title }}">
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary">Search</button>
@@ -31,6 +31,10 @@
                     </div>
                 </a>
             </div>
+        </div>
+        {% empty %}
+        <div class="col-12 d-flex justify-content-center align-items-center mt-3">
+            <h5 class="text-center">No useful tips found.</h5>
         </div>
         {% if forloop.counter|divisibleby:6 and not forloop.last %}
     </div>
