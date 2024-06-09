@@ -3,8 +3,22 @@
 // from deleting all the participant count or to stop from clicking a million times
 // this is definitely a feature to improve
 $(document).ready(function() {
+    function showModal(message) {
+        $('#modalText').text(message);
+        $('#successModal').modal('show');
+    }
+
+    $('#modalOkButton').click(function() {
+        $('#successModal').modal('hide');
+        window.location.reload();
+    });
+
+    $('#successModal').on('hidden.bs.modal', function () {
+        window.location.reload();
+    });
+
     $('#btn-add-participants').click(function() {
-        var eventId = $('#btn-add-participants').data('event-id'); // Assuming the event ID is stored as a data attribute
+        var eventId = $(this).data('event-id');
 
         $.ajax({
             url: `../add-participants/${eventId}`,
@@ -14,15 +28,16 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.status === 'success') {
-                    $('#participants-number').text(`Number of participants: ${response.participants} `)
+                    showModal('You joined the walk! Press OK to reload.');
                 } else {
                     alert('Failed to add participant: ' + response.message);
                 }
             }
         });
     });
+
     $('#btn-remove-participants').click(function() {
-        var eventId = $('#btn-remove-participants').data('event-id'); // Assuming the event ID is stored as a data attribute
+        var eventId = $(this).data('event-id');
 
         $.ajax({
             url: `../remove-participants/${eventId}`,
@@ -32,9 +47,9 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.status === 'success') {
-                    $('#participants-number').text(`Number of participants: ${response.participants} `)
+                    showModal('You left the walk! Press OK to reload.');
                 } else {
-                    alert('Failed to add participant: ' + response.message);
+                    alert('Failed to remove participant: ' + response.message);
                 }
             }
         });

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
-from .models import Event
+from .models import Event, EventParticipant
 from .forms import EventForm, LocationForm
 
 # Create your views here.
@@ -33,9 +33,11 @@ class EventList(generic.ListView):
 
 
 # shows all the details of the event
-def event_detail(request, id):
-    event = get_object_or_404(Event, id=id)
-    return render(request, 'events/event_detail.html', {'event': event})
+def event_detail(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    print(f'Event ID: {event_id}, Retrieved Event: {event}')  # Debugging print statement
+    is_attending = EventParticipant.is_attending(event, request.user)
+    return render(request, 'events/event_detail.html', {'event': event, 'is_attending': is_attending})
 
 
 # creates new event to add to the db and list in the event list
@@ -78,7 +80,7 @@ def create_location(request):
         form = LocationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('event_form_view')
+            return redirect('event_list')
     else:
         form = LocationForm()
     
@@ -94,7 +96,7 @@ def add_participants(request, event_id):
     if request.method == "POST":
         try:
             event = Event.objects.get(id=event_id)
-            event.add_participants()
+            event.add_participants(request.user)
             return JsonResponse({'status': 'success', 'participants': event.participants})
         except Event.DoesNotExist:
             return JsonResponse({'status': 'fail', 'message': 'Event does not exist'})
@@ -106,18 +108,11 @@ def remove_participants(request, event_id):
     if request.method == "POST":
         try:
             event = Event.objects.get(id=event_id)
-            event.remove_participants()
+            event.remove_participants(request.user)
             return JsonResponse({'status': 'success', 'participants': event.participants})
         except Event.DoesNotExist:
             return JsonResponse({'status': 'fail', 'message': 'Event does not exist'})
     return JsonResponse({'status': 'fail', 'message': 'Invalid request'})
 
-        
-
-
-# creates the view to see the details of the event clicked
-def event_detail(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
-    return render(request, "events/event_detail.html", {"event": event})
 
 

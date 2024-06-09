@@ -35,6 +35,26 @@
         {% block content %}
         <!-- Content from other pages will be here -->
         {% endblock content %}
+
+        <!-- Modal for popup messages using bootstrap -->
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Success</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="modalText">
+                        <!-- Success message goes here -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer section with social media links -->

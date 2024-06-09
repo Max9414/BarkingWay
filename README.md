@@ -10,6 +10,13 @@ Welcome to this amazing website dedicated to walks and events for dogs, which ai
 
 ![Responsive Image]()
 
+## Website updated features
+
+Implementing the research and filter has been easier than expected.\
+Implementing a filter to show only the events of today and future has been harder. The main issue has been understanding the logic. I've already worked with logic through models and views,
+but my habit still goes to the html page rather than to the db itself. After failing many times trying to implement logic in the html and realising I could just implement the same logic in the db itself, the solution has been pretty fast to find.\
+The last implementantion, the checker to see if someone joined already the event or not, is being really problematic. I've added correctly the logic to save user and event, the db updates correctly, but I can't seem to do the last part of logic to show the currect button. Even though when troubleshooting I receive the correct user and event value, I can't seem to make the logic work.
+
 ## STRATEGY
 
 Thinking about this project's features have been kinda hard. As the target audience has a big range of age, deciding what to do hasn't been easy. Most feature, though, have been mostly thought for people between 18 and 45 yo
