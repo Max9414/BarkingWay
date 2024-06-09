@@ -92,9 +92,12 @@ really appreciated by lighthouse, I find the colours chosen to be warm and in th
 
 ### Optional features:
 
-Most of the optional features have been added in the last push.\
-What's been left out is summernote to style articles in petcare and breeds and allow users to style better their events.\
-Another small quality of life implementation would be redirecting back to the previous page after creating a city. I searched for the documentation but I didn't quite grasp the full concept for now.
+Most of the optional features have been added in the last push.
+What's been left out is:
+
+- summernote to style articles in petcare and breeds and allow users to style better their events.\
+- another small quality of life implementation would be redirecting back to the previous page after creating a city. I searched for the documentation but I didn't quite grasp the full concept for now.
+- pictures and cloudinary have not been implemented for now.
 
 ## STRUCTURE
 
