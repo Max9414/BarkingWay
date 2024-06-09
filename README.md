@@ -10,6 +10,13 @@ Welcome to this amazing website dedicated to walks and events for dogs, which ai
 
 ![Responsive Image]()
 
+# Website core feature
+
+The website has been thought around the events page, plus different pages for new owners in search of a good website with reliable informations or good tips.\
+For this reason, the main CRUD features revolve around the EVENTS page and the user page.\
+The first allow the user to see all the possible events from today onward, create events when logged in and, again when logged in, join and/or leave an event.\
+The creator of an event can also delete or modify the event. The events created by a user also show up in their profile page, along with their owned dogs.
+
 ## Website updated features
 
 ### Research and filters
@@ -85,9 +92,9 @@ really appreciated by lighthouse, I find the colours chosen to be warm and in th
 
 ### Optional features:
 
-I left the optional features out, the only one I thought about at the project start was the research field, but also the later on thought implementation of a checker to join/leave events
-for possible future updates after the end of the course. I've researched the logic to implement them, but given the time left, I decided to leave them out as they're not necessary.\
-Another feature to add is the automatic deletion of the events that have already taken place. For now, it's the job of the admin.
+Most of the optional features have been added in the last push.\
+What's been left out is summernote to style articles in petcare and breeds and allow users to style better their events.\
+Another small quality of life implementation would be redirecting back to the previous page after creating a city. I searched for the documentation but I didn't quite grasp the full concept for now.
 
 ## STRUCTURE
 

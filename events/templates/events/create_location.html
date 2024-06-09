@@ -3,6 +3,7 @@
 {% block content %}
 <div class="container">
     <h2>Add the missing City to the list:</h2>
+    <p>P.s. after creating the city, you will be redirected to the event list page.</p>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
