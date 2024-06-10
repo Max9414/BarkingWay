@@ -119,7 +119,7 @@ For the fonts I used Roboto, an easy and clear style. I opted for a single font 
 
 #### Database design
 
-(Upload design from tablet)
+![Database Diagram](documentation/databases_relationships.png)
 
 #### Key Models
 
