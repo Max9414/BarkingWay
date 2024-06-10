@@ -9,7 +9,7 @@
 ## Introduction
 
 Welcome to Barkingway, a FullStack website dedicated to events for dogs. The website presents pages dedicated to knowledge about breeds and pet-care and the main page, an event page where people can create and manage their events.
-The purpose of this project was a build a full-stack site based around a business logic used to control a centrally-owned dataset. The technologies used for this project are HTML, CSS, JavaScript, Python, and Django.
+The purpose of this project was to build a full-stack working website. The technologies used for this project are HTML, CSS, JavaScript, Python, and Django.
 The Database used was provided by code institute with PostgreSQL.
 
 ## UXD - User Experience Design
@@ -198,70 +198,70 @@ Register, login and logout have been taken directly from codeinstitue course. Me
 
 - The Navbar is implemented in every page of the project as it's in the base layout
 - It allows the user to move freely and clearly between pages
-- It clearly highlights the page you're currently on
+- It clearly highlights the page you're currently on\
   ![navbar](documentation/navbar.png)
 
 **Footer**
 
-- The footer just complements the page, giving a closure with the same colour of the navbar
+- The footer just complements the page, giving a closure with the same colour of the navbar\
   ![footer](documentation/footer.png)
 
 **Homepage**
 
 - The homepage presents a short clear description of the page
 - The homepage presents a short description to all the pages in the website
-- The cards in the homepage are links to the respective pages
+- The cards in the homepage are links to the respective pages\
   ![homepage](documentation/homepage_website.png)
 
 **breeds page**
 
-- Page dedicated to breeds descriptions to help new owners find the right dogs for them
+- Page dedicated to breeds descriptions to help new owners find the right dogs for them\
   ![breeds page](documentation/breeds_page.png)
 
 **petcare page**
 
-- Page dedicated to useful tips to take good care of your dog
+- Page dedicated to useful tips to take good care of your dog\
   ![petcare page](documentation/petcare_page.png)
 
 **events page**
 
 - Page dedicated to show the list of events in cronological order of event date, from sooner to later
 - Page allows registered user to create an event or asks to user to login to create an event
-- Allows research for location and date
+- Allows research for location and date\
   ![events page](documentation/events_page.png)
 
 **events detail page**
 
 - Allow user to see details and join or leave event
 - Allows creator to modify the event
-- asks visitor to login to join the event
+- asks visitor to login to join the event\
   ![event detail](documentation/event_detail_page.png)
 
 **events detail for creator of event**
 
-- Same as above, but allows user to modify the event
+- Same as above, but allows user to modify the event\
   ![event detail owner](documentation/detail_event_creator.png)
 
 **events creator**
 
 - The page allows the logged in user to create an event
-- The layout is rendered throught django template
+- The layout is rendered throught django template\
   ![event creation](documentation/creation_page.png)
 
 **modify event**
 
-- Like creation page, but it autofills the data from the existing data
+- Like creation page, but it autofills the data from the existing data\
   ![event modification](documentation/manage_event_page.png)
 
 **modify profiles**
 
-- Allows the registered user to modify both theirs and their dog profiles
+- Allows the registered user to modify both theirs and their dog profiles\
   ![profile modification](documentation/modify_profile_page.png)
   ![dog profile modification](documentation/modify_dog_profile_page.png)
 
 **profile page**
 
-- Allows the user to control all the created events and the dog profiles of his account
+- Allows the user to control all the created events and the dog profiles of his account\
   ![profile page](documentation/profile_page.png)
 
 **create dog profile**
@@ -271,7 +271,7 @@ Register, login and logout have been taken directly from codeinstitue course. Me
 
 **city add page**
 
-- Allows the user to add a city to the db
+- Allows the user to add a city to the db\
   ![location add page](documentation/city_add_page.png)
 
 ---
